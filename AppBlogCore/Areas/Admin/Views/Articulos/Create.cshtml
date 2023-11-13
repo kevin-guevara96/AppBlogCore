@@ -1,0 +1,78 @@
+﻿@model BlogCore.Models.ViewModels.ArticuloVM
+
+@{
+    ViewData["Title"] = "Crear Artículo";
+}
+
+<br />
+<br />
+<h3 class="text-center text-primary">Crear un nuevo artículo</h3>
+<form method="POST" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="Articulo.Nombre"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <input asp-for="Articulo.Nombre" class="form-control" placeholder="Ingrese el nombre del Artículo" />
+                    <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="Articulo.Descripcion"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <textarea asp-for="Articulo.Descripcion" id="mytextarea" class="form-control" placeholder="Ingrese la descripción de Artículo"></textarea>
+                    <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label for="Categoria">Categoria</label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategoria, "-Por favor selecciones una categoria-", new {@class = "form-select"})
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="Articulo.UrlImagen"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-8">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/4/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'lists',
+            menubar: 'file edit format'
+        });
+    </script>
+}

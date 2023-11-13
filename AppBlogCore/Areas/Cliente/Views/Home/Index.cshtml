@@ -1,0 +1,29 @@
+﻿@model BlogCore.Models.ViewModels.HomeVM
+
+<div class="row fondoTitle mt-1">
+    <div class="col-sm-12">
+        <h1 class="text-center text-white bg-primary py-1">Últimos Cursos y Tutoriales</h1>
+    </div>
+</div>
+
+@if (Model.ListaArticulos.Count() > 0)
+{
+    <hr />
+    <div class="row">
+        @foreach (var articulo in Model.ListaArticulos.OrderBy(o => o.Id))
+        {
+            <div class="col-4">
+                <div class="card">
+                    <img src="@articulo.UrlImagen" class="img-thumbnail" width="100%">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@articulo.Nombre</h5>
+                        <a asp-action="Details"  class="btn btn-success" style="border-radius:2px" asp-route-id="@articulo.Id">Más información</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+} else
+{
+    <p>No hay artículos</p>
+}

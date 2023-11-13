@@ -1,0 +1,67 @@
+﻿@model BlogCore.Models.Slider
+
+@{
+    ViewData["Title"] = "Crear Slider";
+}
+
+<br />
+<br />
+<h3 class="text-center text-primary">Crear un nuevo slider</h3>
+<form method="POST" asp-action="Create" enctype="multipart/form-data">
+    <div class="row px-2 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-10 offset-1 mt-4">
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="Nombre"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <input asp-for="Nombre" class="form-control" placeholder="Ingrese el nombre del Artículo" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="Estado"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <div class="orm-check form-switch">
+                        <input asp-for="Estado" class="form-check-input" type="checkbox" role="switch" />
+                        <span asp-validation-for="Estado" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+ 
+            <div class="form-group row">
+                <div class="col-3">
+                    <label class="form-label">
+                        <label asp-for="UrlImagen"></label>
+                    </label>
+                </div>
+                <div class="col-9">
+                    <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                    <span asp-validation-for="UrlImagen" class="text-danger"></span>   
+                </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+                <div class="col-8">
+                    <partial name="_VistaCrearVolver" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+
+}
+}
